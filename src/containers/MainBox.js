@@ -1,9 +1,34 @@
 import React from 'react'
 import MenuBar from '../components/MenuBar.js'
-import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
+import { Profile, Photos, Cocktails, Pokemon } from '../components/Pages.js'
 
 class MainBox extends React.Component {
 
+  constructor() {
+    super()
+    this.state = {
+      selected: <Profile />
+    }
+  }
+
+  handleSelection = (event) => {
+    this.setState({
+      ...this.state,
+      selected: this.displayDetails(event.target.id)
+    })
+  }
+
+  displayDetails = (id) => {
+    if (id === "profile") {
+      return <Profile />
+    } else if (id === "photo") {
+      return <Photos />
+    } else if (id === "pokemon") {
+      return <Pokemon />
+    } else if (id === "cocktail") {
+      return <Cocktails />
+    }
+  }
 
   render() {
 
@@ -13,11 +38,11 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
+    const detailsToDisplay = <div>{this.state.selected}</div>
 
     return (
       <div>
-        <MenuBar />
+        <MenuBar handleSelection={this.handleSelection} />
         {detailsToDisplay}
       </div>
     )
