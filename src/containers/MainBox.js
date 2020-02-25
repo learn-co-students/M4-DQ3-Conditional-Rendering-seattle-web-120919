@@ -11,7 +11,6 @@ class MainBox extends React.Component {
   handleChange = (event) => {
     console.log('firing shit')
     this.setState({
-      ...this.state,
       display: this.changeDisplay(event)
     })
   }
